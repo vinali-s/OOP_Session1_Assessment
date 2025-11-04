@@ -14,5 +14,11 @@ public class BankTransfer extends Payment{
     public void processPayment(){
         System.out.println();
         System.out.println("Initiating bank transfer to " + this.bankName + " using account " + this.accountNumber + " with reference " + this.referenceCode );
+        markAsCompleted();
+    }
+
+    @Override
+    public boolean validate() {
+        return bankName != null && accountNumber != null && accountNumber.length() >= 6;
     }
 }

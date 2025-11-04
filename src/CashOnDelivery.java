@@ -10,5 +10,11 @@ public class CashOnDelivery extends Payment{
     public void processPayment(){
         System.out.println();
         System.out.println("Cash will be collected at delivery address: " + this.deliveryAddress);
+        markAsCompleted();
+    }
+
+    @Override
+    public boolean validate() {
+        return deliveryAddress != null && !deliveryAddress.isEmpty();
     }
 }
