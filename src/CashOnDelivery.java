@@ -8,9 +8,15 @@ public class CashOnDelivery extends Payment{
 
     @Override
     public void processPayment(){
-        System.out.println();
-        System.out.println("Cash will be collected at delivery address: " + this.deliveryAddress);
-        markAsCompleted();
+        if(validate()) {
+            System.out.println();
+            System.out.println("Cash will be collected at delivery address: " + this.deliveryAddress);
+            markAsCompleted();
+        }else {
+            System.out.println();
+            System.out.println("Payment failed: Check the delivery address....");
+            status = "FAILED";
+        }
     }
 
     @Override
