@@ -10,9 +10,15 @@ public class CreditCardPayment extends CardPayment implements Discount{
 
     @Override
     public void processPayment(){
-        System.out.println();
-        System.out.println("Charging credit card with limit " +this.creditLimit+" for amount "+this.discountedAmount);
-        markAsCompleted();
+        if(validate()) {
+            System.out.println();
+            System.out.println("Charging credit card with limit " + this.creditLimit + " for amount " + this.discountedAmount);
+            markAsCompleted();
+        }else {
+            System.out.println();
+            System.out.println("Payment failed: Invalid card number or expiry date....");
+            status = "FAILED";
+        }
     }
 
     public void applyInterest(){
