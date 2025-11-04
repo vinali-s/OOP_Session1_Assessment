@@ -21,6 +21,6 @@ public class CardPayment extends Payment{
 
     @Override
     public boolean validate() {
-        return cardNumber != null && cardNumber.length() >= 12 && expiryDate != null;
+        return !cardNumber.isEmpty() && cardNumber.length() >= 12 && !expiryDate.isEmpty();
     }
 }
