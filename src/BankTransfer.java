@@ -12,9 +12,15 @@ public class BankTransfer extends Payment{
 
     @Override
     public void processPayment(){
-        System.out.println();
-        System.out.println("Initiating bank transfer to " + this.bankName + " using account " + this.accountNumber + " with reference " + this.referenceCode );
-        markAsCompleted();
+        if(validate()) {
+            System.out.println();
+            System.out.println("Initiating bank transfer to " + this.bankName + " using account " + this.accountNumber + " with reference " + this.referenceCode);
+            markAsCompleted();
+        }else {
+            System.out.println();
+            System.out.println("Payment failed: Invalid account number or bank name....");
+            status = "FAILED";
+        }
     }
 
     @Override

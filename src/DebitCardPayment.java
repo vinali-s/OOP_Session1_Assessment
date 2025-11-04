@@ -10,9 +10,15 @@ public class DebitCardPayment extends CardPayment implements Discount{
 
     @Override
     public void processPayment(){
-        System.out.println();
-        System.out.println("Debiting from account balance "+this.availableBalance+" for amount "+this.discountedAmount);
-        markAsCompleted();
+        if(validate()) {
+            System.out.println();
+            System.out.println("Debiting from account balance " + this.availableBalance + " for amount " + this.discountedAmount);
+            markAsCompleted();
+        }else{
+            System.out.println();
+            System.out.println("Payment failed: Invalid card number or expiry date....");
+            status = "FAILED";
+        }
     }
 
     public void checkSufficientBalance(){
